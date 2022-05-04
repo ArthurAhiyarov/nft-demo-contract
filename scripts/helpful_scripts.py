@@ -24,20 +24,6 @@ contract_to_mock = {"link_token": LinkToken, "vrf_coordinator": VRFCoordinatorMo
 
 
 def get_contract(contract_name):
-    """
-    This function will either:
-        - Get an address from the config
-        - Or deploy a Mock to use for a network that doesn't have the contract
-    Args:
-        contract_name (string): This is the name of the contract that we will get
-        from the config or deploy
-    Returns:
-        brownie.network.contract.ProjectContract: This is the most recently deployed
-        Contract of the type specified by a dictionary. This could either be a mock
-        or a 'real' contract on a live network.
-    """
-    # link_token
-    # LinkToken
     contract_type = contract_to_mock[contract_name]
     if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
         if len(contract_type) <= 0:
@@ -52,9 +38,6 @@ def get_contract(contract_name):
 
 
 def deploy_mocks():
-    """
-    Use this script if you want to deploy mocks to a testnet
-    """
     print(f"The active network is {network.show_active()}")
     print("Deploying mocks...")
     account = get_account()
